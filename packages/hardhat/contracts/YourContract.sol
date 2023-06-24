@@ -12,12 +12,11 @@ contract YourContract {
   //string public purpose = "Building Unstoppable Apps!!!";
   string public review = "Set a review";
 
-  uint256 houseCount = 0;
-  mapping(uint => houseReview) reviews;
+  mapping(string => metaData) houses;
 
-  struct houseReview {
-    string _houseID;
-    string _review;
+  struct metaData {
+    string[] _reviews;
+    bool doesExist;
   }
 
   // constructor() payable {
@@ -33,12 +32,18 @@ contract YourContract {
     
 
     function addReview(string memory _houseID, string memory _review) public {
-        houseCount += 1;
-        reviews[houseCount] = houseReview(_houseID, _review);
+      houses[_houseID].doesExist = true;
+      houses[_houseID]._reviews.push(_review);
     }
 
-    function getReview(string memory _houseID) public view returns(string memory) {
-      return _houseID;
+    function getReviews(string memory _houseID) public view returns(string[] memory) {
+      if (houses[_houseID].doesExist){
+        return houses[_houseID]._reviews;
+      } else {
+        string[] memory empty;
+        return empty;
+      }
+      
     }
 
 }
