@@ -1,6 +1,7 @@
 import { Button, Col, Divider, Input, Row, Tooltip } from "antd";
 import React, { useState } from "react";
 import Blockies from "react-blockies";
+import { useHistory } from "react-router-dom";
 
 import { Transactor } from "../../helpers";
 import { tryToDisplay, tryToDisplayAsText } from "./utils";
@@ -15,9 +16,11 @@ const getFunctionInputKey = (functionInfo, input, inputIndex) => {
 const isReadable = fn => fn.stateMutability === "view" || fn.stateMutability === "pure";
 
 export default function FunctionForm({ contractFunction, functionInfo, provider, gasPrice, triggerRefresh }) {
+  let history = useHistory();
+
   const [form, setForm] = useState({});
   const [txValue, setTxValue] = useState();
-  const [returnValue, setReturnValue] = useState();
+  const [returnValue, setReturnValue] = useState("test");
 
   const tx = Transactor(provider, gasPrice);
 
@@ -97,7 +100,7 @@ export default function FunctionForm({ contractFunction, functionInfo, provider,
     }
 
     return (
-      <div style={{ margin: 2 }} key={key}>
+      <div className="temp" style={{ margin: 2, padding: 5 }} key={key}>
         <Input
           size="large"
           placeholder={input.name ? input.type + " " + input.name : input.type}
@@ -176,11 +179,13 @@ export default function FunctionForm({ contractFunction, functionInfo, provider,
   inputs.push(
     <div style={{ cursor: "pointer", margin: 2 }} key="goButton">
       <Input
-        onChange={e => setReturnValue(e.target.value)}
+        onChange={e => {
+          setReturnValue(e.target.value);
+        }}
         defaultValue=""
         bordered={false}
         disabled
-        value={returnValue}
+        // value={"returnValue"}
         suffix={
           <div
             style={{ width: 50, height: 30, margin: 0 }}
@@ -203,6 +208,8 @@ export default function FunctionForm({ contractFunction, functionInfo, provider,
 
               let result;
               if (functionInfo.stateMutability === "view" || functionInfo.stateMutability === "pure") {
+                console.log("A");
+                console.log(...args);
                 try {
                   const returned = await contractFunction(...args);
                   handleForm(returned);
@@ -210,7 +217,9 @@ export default function FunctionForm({ contractFunction, functionInfo, provider,
                 } catch (err) {
                   console.error(err);
                 }
+                history.push("/testing", { state: { review: result, listing_name: form.getReviews__houseID_string } });
               } else {
+                console.log("B");
                 const overrides = {};
                 if (txValue) {
                   overrides.value = txValue; // ethers.utils.parseEther()
@@ -227,8 +236,8 @@ export default function FunctionForm({ contractFunction, functionInfo, provider,
                 result = tryToDisplay(returned);
               }
 
-              console.log("SETTING RESULT:", result);
               setReturnValue(result);
+
               triggerRefresh(true);
             }}
           >
@@ -236,6 +245,9 @@ export default function FunctionForm({ contractFunction, functionInfo, provider,
           </div>
         }
       />
+      {/* <div style={{fontSize: 25, marginRight: "auto"}}>
+        {returnValue}
+      </div> */}
     </div>,
   );
 
@@ -245,7 +257,7 @@ export default function FunctionForm({ contractFunction, functionInfo, provider,
         <Col
           span={8}
           style={{
-            textAlign: "right",
+            textAlign: "left",
             opacity: 0.333,
             paddingRight: 6,
             fontSize: 24,

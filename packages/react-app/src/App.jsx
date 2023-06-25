@@ -30,6 +30,7 @@ import externalContracts from "./contracts/external_contracts";
 import deployedContracts from "./contracts/hardhat_contracts.json";
 import { getRPCPollTime, Transactor, Web3ModalSetup } from "./helpers";
 import { useStaticJsonRPC, useGasPrice } from "./hooks";
+import ListingReview from "./components/ListingReview";
 
 const { ethers } = require("ethers");
 /*
@@ -331,6 +332,9 @@ function App(props) {
             blockExplorer={blockExplorer}
             contractConfig={contractConfig}
           />
+        </Route>
+        <Route exact path="/testing">
+          <ListingReview />
         </Route>
       </Switch>
 
