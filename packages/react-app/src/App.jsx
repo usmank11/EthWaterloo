@@ -31,6 +31,7 @@ import deployedContracts from "./contracts/hardhat_contracts.json";
 import { getRPCPollTime, Transactor, Web3ModalSetup } from "./helpers";
 import { Home, ExampleUI, Hints, Subgraph } from "./views";
 import { useStaticJsonRPC, useGasPrice } from "./hooks";
+import { create } from "ipfs-http-client";
 
 const { ethers } = require("ethers");
 /*
@@ -128,6 +129,16 @@ function App(props) {
       }
     }
     getAddress();
+    const fetchFileFromIPFS = async () => {
+      // connect to a different API
+      const client = create();
+
+      // call Core API methods
+      const { cid } = await client.add("Hello world!");
+
+      console.log(cid);
+    };
+    fetchFileFromIPFS();
   }, [userSigner]);
 
   // You can warn the user if you would like them to be on a specific network
