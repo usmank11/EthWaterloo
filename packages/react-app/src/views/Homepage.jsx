@@ -1,5 +1,10 @@
 import "./Homepage.css";
-import houseImage from "./house.png";
+import houseImage1 from "./110.png";
+import houseImage2 from "./258.png";
+import houseImage3 from "./271.png";
+import houseImage4 from "./308.png";
+import houseImage5 from "./house.png";
+import houseImage6 from "./house2.png";
 import star from "./star.svg";
 import unfilled_star from "./unfilled-star.svg";
 
@@ -8,14 +13,14 @@ import { useHistory } from "react-router-dom";
 function HomePage({ onClick }) {
   const houses = [
     {
-      image: "./logo.svg",
-      title: "289 Lester UW",
+      image: houseImage1,
+      title: "271 Lester UW",
       reviews: 25,
       stars: 4,
       reviewTexts: ['"Loved this Place!"', '"Great Price, Okay Management, Close to campus!"'],
     },
     {
-      image: "./logo.svg",
+      image: houseImage2,
       title: "325 Lester UW",
       reviews: 40,
       stars: 3,
@@ -25,7 +30,7 @@ function HomePage({ onClick }) {
       ],
     },
     {
-      image: "./logo.svg",
+      image: houseImage3,
       title: "289 Columbia UW",
       reviews: 80,
       stars: 5,
@@ -36,14 +41,14 @@ function HomePage({ onClick }) {
       ],
     },
     {
-      image: "./logo.svg",
+      image: houseImage4,
       title: "160 King St UW",
       reviews: 11,
       stars: 1,
       reviewTexts: ["Terrible experience overall.", "Overpriced and poorly managed."],
     },
     {
-      image: "./logo.svg",
+      image: houseImage5,
       title: "230 Albert UW",
       reviews: 25,
       stars: 3,
@@ -53,7 +58,7 @@ function HomePage({ onClick }) {
       ],
     },
     {
-      image: "./logo.svg",
+      image: houseImage6,
       title: "139 Columbia UW",
       reviews: 44,
       stars: 3,
@@ -75,7 +80,7 @@ function HomePage({ onClick }) {
                 history.push("/testing", { state: { review: house.reviewTexts, listing_name: house.title } });
               }}
             >
-              <img src={houseImage} className="home-image" />
+              <img src={house.image} className="home-image" />
               <div className="home-desc">
                 <div className="home-house-title">
                   <p>{house.title}</p>

@@ -66,37 +66,5 @@ export default function Faucet(props) {
 
   const tx = Transactor(localProvider);
 
-  return (
-    <span>
-      <Input
-        size="large"
-        placeholder={placeholder ? placeholder : "local faucet"}
-        prefix={blockie}
-        value={address}
-        onChange={e => updateAddress(e.target.value)}
-        suffix={
-          <Tooltip title="Faucet: Send local ether to an address.">
-            <Button
-              onClick={() => {
-                tx({
-                  to: address,
-                  value: utils.parseEther("0.5"),
-                });
-                setAddress("");
-              }}
-              shape="circle"
-              icon={<SendOutlined />}
-            />
-            <Wallet
-              color="#888888"
-              provider={localProvider}
-              ensProvider={ensProvider}
-              price={price}
-              address={faucetAddress}
-            />
-          </Tooltip>
-        }
-      />
-    </span>
-  );
+  return <span></span>;
 }
