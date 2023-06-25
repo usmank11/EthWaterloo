@@ -3,7 +3,7 @@ import { useLocation } from "react-router-dom";
 export default function FunctionForm() {
   const location = useLocation();
 
-  const reviews = JSON.parse(location.state.state.review);
+  const reviews = location.state.state.review;
   console.log(reviews);
 
   return (

@@ -217,7 +217,9 @@ export default function FunctionForm({ contractFunction, functionInfo, provider,
                 } catch (err) {
                   console.error(err);
                 }
-                history.push("/testing", { state: { review: result, listing_name: form.getReviews__houseID_string } });
+                history.push("/testing", {
+                  state: { review: JSON.parse(result), listing_name: form.getReviews__houseID_string },
+                });
               } else {
                 console.log("B");
                 const overrides = {};
