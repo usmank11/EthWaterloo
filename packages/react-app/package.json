@@ -50,6 +50,7 @@
     "ipfs-core": "^0.18.1",
     "ipfs-http-client": "^50.1.2",
     "isomorphic-fetch": "^3.0.0",
+    "kubo-rpc-client": "^3.0.1",
     "node-polyfill-webpack-plugin": "^2.0.1",
     "node-watch": "^0.7.1",
     "postcss": "^8.2.6",

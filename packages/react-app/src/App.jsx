@@ -31,7 +31,7 @@ import deployedContracts from "./contracts/hardhat_contracts.json";
 import { getRPCPollTime, Transactor, Web3ModalSetup } from "./helpers";
 import { Home, ExampleUI, Hints, Subgraph } from "./views";
 import { useStaticJsonRPC, useGasPrice } from "./hooks";
-import { create } from "ipfs-http-client";
+import { create } from "kubo-rpc-client";
 
 const { ethers } = require("ethers");
 /*
