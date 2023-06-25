@@ -31,6 +31,7 @@ import deployedContracts from "./contracts/hardhat_contracts.json";
 import { getRPCPollTime, Transactor, Web3ModalSetup } from "./helpers";
 import { useStaticJsonRPC, useGasPrice } from "./hooks";
 import ListingReview from "./components/ListingReview";
+import HomePage from "./views/Homepage";
 
 const { ethers } = require("ethers");
 /*
@@ -314,7 +315,7 @@ function App(props) {
 
       <Switch>
         <Route exact path="/">
-          <div>Home page</div>
+          <HomePage />
         </Route>
         <Route exact path="/review">
           {/*
